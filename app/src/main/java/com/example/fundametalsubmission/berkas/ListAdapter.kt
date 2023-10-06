@@ -11,6 +11,14 @@ import com.example.fundametalsubmission.databinding.ItemListBinding
 class ListAdapter : RecyclerView.Adapter<ListAdapter.UserViewHolder>() {
 
     private  val list = ArrayList<User>()
+
+    private var onItemClickCallback: OnItemClickCallback? = null
+
+    fun setOnItemClickCallback(callback: OnItemClickCallback) {
+        this.onItemClickCallback = callback
+    }
+
+
     fun setList(users: MutableList<User>){
         list.clear()
         list.addAll(users)
@@ -19,6 +27,11 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.UserViewHolder>() {
 
     inner class UserViewHolder(val binding: ItemListBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(user : User){
+            binding.root.setOnClickListener{
+                onItemClickCallback?.onItemClicked(user)
+            }
+
+
             binding.apply {
                 Glide.with(itemView)
                     .load(user.avatar_url)
@@ -40,4 +53,10 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.UserViewHolder>() {
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
        holder.bind(list[position])
     }
+
+
+    interface OnItemClickCallback{
+        fun onItemClicked(data: User)
+    }
+
 }

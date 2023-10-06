@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".berkas.detail.ActivityDetail">
+
+    <ImageView
+        android:id="@+id/kode_profile"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/ls_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/kode_profile"
+        app:layout_constraintEnd_toEndOf="@id/kode_profile"
+        app:layout_constraintTop_toBottomOf="@id/kode_profile"/>
+
+    <TextView
+        android:id="@+id/ls_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        tools:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/ls_name"
+        app:layout_constraintStart_toStartOf="@+id/ls_name"
+        app:layout_constraintTop_toBottomOf="@+id/ls_name" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/ls_name"
+        app:layout_constraintEnd_toEndOf="@id/ls_username"
+        app:layout_constraintTop_toBottomOf="@id/ls_username">
+
+        <TextView
+            android:id="@+id/ls_followers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:drawableStart="@drawable/person"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="12 Followers" />
+
+        <TextView
+            android:id="@+id/ls_following"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:drawableStart="@drawable/person"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="12 Following" />
+
+    </LinearLayout>
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab"
+        android:layout_width="411dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:background="@color/grey"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:tabTextColor="@color/white" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

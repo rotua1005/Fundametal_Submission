@@ -1,5 +1,6 @@
 package com.example.fundametalsubmission
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
@@ -11,6 +12,8 @@ import com.example.fundametalsubmission.databinding.ActivityMainBinding
 import android.view.KeyEvent
 import android.view.View
 import com.example.fundametalsubmission.berkas.ResUser
+import com.example.fundametalsubmission.berkas.detail.ActivityDetail
+import com.example.fundametalsubmission.berkas.detail.DetailRes
 import com.example.fundametalsubmission.berkas.model.User
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,6 +32,15 @@ class MainActivity : AppCompatActivity() {
 
         adapter = ListAdapter()
         adapter.notifyDataSetChanged()
+        adapter.setOnItemClickCallback(object : ListAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: User) {
+                Intent(this@MainActivity,DetailRes::class.java).also {
+                    it.putExtra(ActivityDetail.Trx_Username,data.login)
+                    startActivity(it)
+                }
+            }
+
+        })
         viewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(GithubViewModel::class.java)
 
         binding.apply {
@@ -51,9 +63,6 @@ class MainActivity : AppCompatActivity() {
                 return@setOnKeyListener false
             }
         }
-
-
-
 
         viewModel.getSearchUser().observe(this,{
             if (it!=null){
