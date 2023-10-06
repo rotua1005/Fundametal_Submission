@@ -13,10 +13,7 @@ import retrofit2.Response
 class GithubViewModel : ViewModel() {
     val listUsers = MutableLiveData<ArrayList<User>>()
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 98e431471e114ec9cf3b598dd07ac66e44f81c05
     fun setSearchUsers(query : String){
         RetrofitApi.apiInstance
             .getSearchUsers(query)
@@ -24,12 +21,9 @@ class GithubViewModel : ViewModel() {
                 override fun onResponse(call: Call<ResUser>, response: Response<ResUser>) {
                     if(response.isSuccessful){
                         listUsers.postValue(response.body()?.items)
-<<<<<<< HEAD
                     } else {
                         Log.d("Fail", "Error: ${response.code()} - ${response.message()}")
 
-=======
->>>>>>> 98e431471e114ec9cf3b598dd07ac66e44f81c05
                     }
                 }
 
@@ -40,7 +34,6 @@ class GithubViewModel : ViewModel() {
             })
     }
 
-<<<<<<< HEAD
 
 
     fun getSearchUser() : LiveData<ArrayList<User>>{
@@ -49,10 +42,5 @@ class GithubViewModel : ViewModel() {
     fun getUsersLiveData(): LiveData<ArrayList<User>>{
         return  listUsers
     }
-=======
-    fun getSearchUser() : LiveData<ArrayList<User>>{
-        return  listUsers
-    }
->>>>>>> 98e431471e114ec9cf3b598dd07ac66e44f81c05
 }
 

@@ -1,9 +1,5 @@
 package com.example.fundametalsubmission.berkas
 
-<<<<<<< HEAD
-=======
-import android.graphics.drawable.Drawable
->>>>>>> 98e431471e114ec9cf3b598dd07ac66e44f81c05
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -15,11 +11,7 @@ import com.example.fundametalsubmission.databinding.ItemListBinding
 class ListAdapter : RecyclerView.Adapter<ListAdapter.UserViewHolder>() {
 
     private  val list = ArrayList<User>()
-<<<<<<< HEAD
     fun setList(users: MutableList<User>){
-=======
-    fun setList(users : ArrayList<User>){
->>>>>>> 98e431471e114ec9cf3b598dd07ac66e44f81c05
         list.clear()
         list.addAll(users)
         notifyDataSetChanged()

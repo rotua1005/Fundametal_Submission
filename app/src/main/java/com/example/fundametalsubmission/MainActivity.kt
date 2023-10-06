@@ -10,15 +10,12 @@ import com.example.fundametalsubmission.berkas.model.GithubViewModel
 import com.example.fundametalsubmission.databinding.ActivityMainBinding
 import android.view.KeyEvent
 import android.view.View
-<<<<<<< HEAD
 import com.example.fundametalsubmission.berkas.ResUser
 import com.example.fundametalsubmission.berkas.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import kotlin.random.Random
-=======
->>>>>>> 98e431471e114ec9cf3b598dd07ac66e44f81c05
 
 class MainActivity : AppCompatActivity() {
     private lateinit var  binding : ActivityMainBinding
@@ -39,12 +36,9 @@ class MainActivity : AppCompatActivity() {
             ryUser.setHasFixedSize(true)
             ryUser.adapter = adapter
 
-<<<<<<< HEAD
 
             viewModel.setSearchUsers("q")
 
-=======
->>>>>>> 98e431471e114ec9cf3b598dd07ac66e44f81c05
             btnSearch.setOnClickListener {
                 searchUser()
             }
@@ -57,7 +51,6 @@ class MainActivity : AppCompatActivity() {
                 return@setOnKeyListener false
             }
         }
-<<<<<<< HEAD
 
 
 
@@ -77,17 +70,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-=======
-        viewModel.getSearchUser().observe(this,{
-            if (it!=null){
-                adapter.setList(it)
-            showLoadind(false)
-        }
-        })
-    }
-
-
->>>>>>> 98e431471e114ec9cf3b598dd07ac66e44f81c05
     private  fun searchUser(){
         binding.apply {
             val query = editQuery.text.toString()
