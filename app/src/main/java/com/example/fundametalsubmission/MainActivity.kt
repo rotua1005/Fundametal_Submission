@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged()
         adapter.setOnItemClickCallback(object : ListAdapter.OnItemClickCallback{
             override fun onItemClicked(data: User) {
-                Intent(this@MainActivity,DetailRes::class.java).also {
+                Intent(this@MainActivity,ActivityDetail::class.java).also {
                     it.putExtra(ActivityDetail.Trx_Username,data.login)
                     startActivity(it)
                 }

@@ -9,7 +9,8 @@ import com.example.fundametalsubmission.R
 import com.example.fundametalsubmission.databinding.FragmentFrFollowerBinding
 
 
-class FrFollower : Fragment(R.layout.fragment_fr_follower){
+class FrFollowing : Fragment(R.layout.fragment_fr_follower){
+
 
         private var fragmentBinding: FragmentFrFollowerBinding? = null
 

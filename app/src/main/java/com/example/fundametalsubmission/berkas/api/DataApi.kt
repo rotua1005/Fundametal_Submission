@@ -12,7 +12,7 @@ import retrofit2.http.Query
 
 interface DataApi {
 
-    @GET("users/{r}")
+    @GET("users/{username}")
     @Headers("Authorization: ${Config.GITHUB_API_TOKEN}")
     fun getUserDetail(
         @Path("username") username : String
