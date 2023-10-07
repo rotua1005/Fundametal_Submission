@@ -24,6 +24,8 @@ class ActivityDetail : AppCompatActivity() {
         setContentView(binding.root)
 
         val username= intent.getStringExtra(Trx_Username)
+        val bundle = Bundle()
+        bundle.putString(Trx_Username,username)
 
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(DetailViewModel::class.java)
 
@@ -44,7 +46,7 @@ class ActivityDetail : AppCompatActivity() {
             }
 
         })
-        val SectionAdapter = SectionAdapter(mCtx = this, supportFragmentManager)
+        val SectionAdapter = SectionAdapter(mCtx = this, supportFragmentManager,bundle)
         binding.apply {
             viewPager.adapter = SectionAdapter
             tab.setupWithViewPager(viewPager)
