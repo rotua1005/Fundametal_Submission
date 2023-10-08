@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClicked(data: User) {
                 Intent(this@MainActivity,ActivityDetail::class.java).also {
                     it.putExtra(ActivityDetail.Trx_Username,data.login)
+                    it.putExtra(ActivityDetail.EXTRA_ID,data.id)
                     startActivity(it)
                 }
             }
