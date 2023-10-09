@@ -4,7 +4,23 @@
     <item
         android:id="@+id/favorite_menu"
         android:title="List Favorite"
-        android:icon="@drawable/star"
-        app:showAsAction="always"
-        />
+        android:icon="@drawable/love"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/mode"
+        android:title="Mode"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/light"
+                android:title="Mode Cahaya"
+                android:icon="@drawable/star_light"
+                app:showAsAction="always" />
+            <item
+                android:id="@+id/dark"
+                android:title="Mode Gelap"
+                android:icon="@drawable/start_night"
+                app:showAsAction="always" />
+        </menu>
+    </item>
 </menu>

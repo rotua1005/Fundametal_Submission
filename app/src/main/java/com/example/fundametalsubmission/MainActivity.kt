@@ -15,6 +15,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.fundametalsubmission.berkas.ResUser
 import com.example.fundametalsubmission.berkas.detail.ActivityDetail
 import com.example.fundametalsubmission.berkas.detail.DetailRes
@@ -120,8 +121,17 @@ class MainActivity : AppCompatActivity() {
                    startActivity(it)
                }
            }
+           R.id.light -> {
+               AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+               return true
+           }
+           R.id.dark -> {
+
+               AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+               return true
+           }
+           else -> return super.onOptionsItemSelected(item)
        }
        return super .onOptionsItemSelected(item)
     }
-
 }

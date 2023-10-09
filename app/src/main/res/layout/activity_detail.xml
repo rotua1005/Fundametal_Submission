@@ -6,18 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".berkas.detail.ActivityDetail">
 
+
     <ImageView
         android:id="@+id/kode_profile"
         android:layout_width="95dp"
         android:layout_height="95dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="160dp"
+        android:layout_marginEnd="130dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/person" />
-
 
     <TextView
         android:id="@+id/ls_name"
@@ -68,9 +68,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:drawableStart="@drawable/person"
             android:textColor="@color/black"
             android:textSize="14sp"
-            android:drawableStart="@drawable/person"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="12 Following" />
 
@@ -104,7 +104,7 @@
         android:id="@+id/toggle_favorite"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="270dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/favorite_toggle"
         android:focusable="false"
