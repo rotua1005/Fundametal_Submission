@@ -18,6 +18,7 @@ class ActivityDetail : AppCompatActivity() {
     companion object{
         const val Trx_Username = "extra_username"
         const val EXTRA_ID = "extra_id"
+        const val Trx_Url = "extra_url"
     }
 
     private lateinit var binding: ActivityDetailBinding
@@ -30,6 +31,7 @@ class ActivityDetail : AppCompatActivity() {
 
         val username= intent.getStringExtra(Trx_Username)
         val id = intent.getIntExtra(EXTRA_ID,0)
+        val avatarUrl = intent.getStringExtra(Trx_Url)
         val bundle = Bundle()
         bundle.putString(Trx_Username,username)
 
@@ -71,7 +73,7 @@ class ActivityDetail : AppCompatActivity() {
         binding.toggleFavorite.setOnClickListener {
             isChecked = !isChecked
             if(isChecked){
-                viewModel.addToFavorite(username.toString(),id)
+                viewModel.addToFavorite(username.toString(),id, avatarUrl.toString())
             }else{
                 viewModel.removeFromFavorite(id)
             }

@@ -15,6 +15,9 @@
         android:theme="@style/Theme.FundametalSubmission"
         tools:targetApi="31">
         <activity
+            android:name=".berkas.saveFavorite.FavoriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".berkas.detail.ActivityDetail"
             android:exported="false" />
         <activity

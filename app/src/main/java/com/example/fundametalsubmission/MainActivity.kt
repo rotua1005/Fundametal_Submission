@@ -10,11 +10,16 @@ import com.example.fundametalsubmission.berkas.ListAdapter
 import com.example.fundametalsubmission.berkas.model.GithubViewModel
 import com.example.fundametalsubmission.databinding.ActivityMainBinding
 import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.example.fundametalsubmission.berkas.ResUser
 import com.example.fundametalsubmission.berkas.detail.ActivityDetail
 import com.example.fundametalsubmission.berkas.detail.DetailRes
 import com.example.fundametalsubmission.berkas.model.User
+import com.example.fundametalsubmission.berkas.saveFavorite.FavoriteActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,7 +33,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_main)
         setContentView(binding.root)
+
+        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         adapter = ListAdapter()
         adapter.notifyDataSetChanged()
@@ -37,6 +46,7 @@ class MainActivity : AppCompatActivity() {
                 Intent(this@MainActivity,ActivityDetail::class.java).also {
                     it.putExtra(ActivityDetail.Trx_Username,data.login)
                     it.putExtra(ActivityDetail.EXTRA_ID,data.id)
+                    it.putExtra(ActivityDetail.Trx_Url,data.avatar_url)
                     startActivity(it)
                 }
             }
@@ -96,4 +106,22 @@ class MainActivity : AppCompatActivity() {
             binding.proses.visibility = View.GONE
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+      menuInflater.inflate(R.menu.option_menu,menu)
+        return  super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+       when(item.itemId){
+           R.id.favorite_menu -> {
+               Toast.makeText(this, "Menu Favorite diklik", Toast.LENGTH_SHORT).show()
+               Intent(this,FavoriteActivity::class.java).also {
+                   startActivity(it)
+               }
+           }
+       }
+       return super .onOptionsItemSelected(item)
+    }
+
 }
