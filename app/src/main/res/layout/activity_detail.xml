@@ -24,7 +24,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/kode_profile"
@@ -54,12 +53,11 @@
         <TextView
             android:id="@+id/ls_followers"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/black"
-            android:textSize="14sp"
+            android:layout_marginEnd="20dp"
             android:drawableStart="@drawable/person"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="12 Followers" />
 
@@ -69,7 +67,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:drawableStart="@drawable/person"
-            android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:text="12 Following" />

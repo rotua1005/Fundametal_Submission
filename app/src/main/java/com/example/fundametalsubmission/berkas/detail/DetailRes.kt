@@ -8,5 +8,5 @@ data class DetailRes(
     val following_url : String,
     val name : String,
     val following: Int,
-    val follower:Int
+    val followers:Int
 )

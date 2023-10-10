@@ -1,6 +1,8 @@
 package com.example.fundametalsubmission
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModel
@@ -27,39 +29,37 @@ import retrofit2.Response
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var  binding : ActivityMainBinding
-    private  lateinit var viewModel: GithubViewModel
-    private  lateinit var adapter: ListAdapter
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: GithubViewModel
+    private lateinit var adapter: ListAdapter
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_main)
         setContentView(binding.root)
 
-        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
 
         adapter = ListAdapter()
         adapter.notifyDataSetChanged()
-        adapter.setOnItemClickCallback(object : ListAdapter.OnItemClickCallback{
+        adapter.setOnItemClickCallback(object : ListAdapter.OnItemClickCallback {
             override fun onItemClicked(data: User) {
-                Intent(this@MainActivity,ActivityDetail::class.java).also {
-                    it.putExtra(ActivityDetail.Trx_Username,data.login)
-                    it.putExtra(ActivityDetail.EXTRA_ID,data.id)
-                    it.putExtra(ActivityDetail.Trx_Url,data.avatar_url)
+                Intent(this@MainActivity, ActivityDetail::class.java).also {
+                    it.putExtra(ActivityDetail.Trx_Username, data.login)
+                    it.putExtra(ActivityDetail.EXTRA_ID, data.id)
+                    it.putExtra(ActivityDetail.Trx_Url, data.avatar_url)
                     startActivity(it)
                 }
             }
-
         })
-        viewModel = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory()).get(GithubViewModel::class.java)
+
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(GithubViewModel::class.java)
 
         binding.apply {
             ryUser.layoutManager = LinearLayoutManager(this@MainActivity)
             ryUser.setHasFixedSize(true)
             ryUser.adapter = adapter
-
 
             viewModel.setSearchUsers("q")
 
@@ -76,62 +76,74 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        viewModel.getSearchUser().observe(this,{
-            if (it!=null){
+        viewModel.getSearchUser().observe(this, {
+            if (it != null) {
                 adapter.setList(it)
-                showLoadind(false)
+                showLoading(false)
             }
         })
 
         viewModel.getUsersLiveData().observe(this, { users ->
             if (users != null) {
                 adapter.setList(users)
-                showLoadind(false)
+                showLoading(false)
             }
         })
+
+
+        sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val isDarkModeEnabled = sharedPreferences.getBoolean("isDarkModeEnabled", false)
+        if (isDarkModeEnabled) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 
-    private  fun searchUser(){
+    private fun searchUser() {
         binding.apply {
             val query = editQuery.text.toString()
-            if(query.isEmpty()) return
-            showLoadind(true)
+            if (query.isEmpty()) return
+            showLoading(true)
             viewModel.setSearchUsers(query)
         }
     }
 
-    private fun showLoadind(state: Boolean){
-        if(state){
+    private fun showLoading(state: Boolean) {
+        if (state) {
             binding.proses.visibility = View.VISIBLE
-        }else{
+        } else {
             binding.proses.visibility = View.GONE
         }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-      menuInflater.inflate(R.menu.option_menu,menu)
-        return  super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.option_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-       when(item.itemId){
-           R.id.favorite_menu -> {
-               Toast.makeText(this, "Menu Favorite diklik", Toast.LENGTH_SHORT).show()
-               Intent(this,FavoriteActivity::class.java).also {
-                   startActivity(it)
-               }
-           }
-           R.id.light -> {
-               AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-               return true
-           }
-           R.id.dark -> {
+        when (item.itemId) {
+            R.id.favorite_menu -> {
+                Toast.makeText(this, "Menu Favorite diklik", Toast.LENGTH_SHORT).show()
+                Intent(this, FavoriteActivity::class.java).also {
+                    startActivity(it)
+                }
+            }
+            R.id.light -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-               AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-               return true
-           }
-           else -> return super.onOptionsItemSelected(item)
-       }
-       return super .onOptionsItemSelected(item)
+                sharedPreferences.edit().putBoolean("isDarkModeEnabled", false).apply()
+                return true
+            }
+            R.id.dark -> {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+
+                sharedPreferences.edit().putBoolean("isDarkModeEnabled", true).apply()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -43,7 +43,7 @@ class ActivityDetail : AppCompatActivity() {
                 binding.apply {
                     lsName.text = it.name
                     lsUsername.text = it.login
-                    lsFollowers.text = "${it.follower} Followers"
+                    lsFollowers.text = "${it.followers} Followers"
                     lsFollowing.text = "${it.following}Following"
                     Glide.with(this@ActivityDetail)
                         .load(it.avatar_url)
